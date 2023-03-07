@@ -32,6 +32,9 @@
 
     $ pip install uvicorn
 
+--INSTALAR PYBSON
+
+    $ pip install pybson
 
 -- INSTALAR PYMONGO
 
