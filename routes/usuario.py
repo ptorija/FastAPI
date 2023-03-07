@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from config.db import conn
 from schemas.usuario import usuarioEntity, usuariosEntity
-from models.usuario import Usuario
+from models.usuario import UsuarioMongo
 
 usuario = APIRouter()
 
@@ -11,8 +11,13 @@ def getUsuarios():
     return usuariosEntity(conn.local.usuarios.find())
 
 @usuario.post("/usuarios")
-def createUsuarios(user: Usuario):
+def createUsuarios(user: UsuarioMongo):
     nuevo_usuario = dict(user)
+
+    db = conn["tfg"]
+    coll = db["users"]
+    coll.insert_one(nuevo_usuario)
+
     print(nuevo_usuario)
     return "Usuario creado"
 

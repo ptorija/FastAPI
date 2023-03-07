@@ -1,8 +1,11 @@
 def usuarioEntity(item) -> dict:
     return {
-        "id": item["id"],
-        "nombre": item["nombre"],
-        "correo": item["correo"]
+        "name": item["name"],
+        "reviewerId": item["reviewerId"],
+        "reviewerUrl": item["reviewerUrl"],
+        "reviewerNumberOfReviews": item["reviewerNumberOfReviews"],
+        "isLocalGuide": item["isLocalGuide"],
+        "numReviewsEnBD": item["numReviewsEnBD"],
     }
 
 def usuariosEntity(usuarios) -> list:
