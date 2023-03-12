@@ -4,19 +4,21 @@ from config.db import conn
 from schemas.usuario import usuarioEntity, usuariosEntity
 from models.usuario import UsuarioMongo
 
-usuario = APIRouter()
+usuario = APIRouter(
+    tags=["Usuarios"]
+)
 db = conn["tfg"]
 coll = db["users"]
 
 
 @usuario.get("/usuarios")
-def getUsuarios():
+def get_Usuarios():
     result = coll.find({})
     return usuariosEntity(result)
 
 
 @usuario.post("/usuarios")
-def createUsuarios(user: UsuarioMongo):
+def create_Usuarios(user: UsuarioMongo):
     nuevo_usuario = dict(user)
     coll.insert_one(nuevo_usuario)
     print(nuevo_usuario)
@@ -24,24 +26,27 @@ def createUsuarios(user: UsuarioMongo):
 
 
 @usuario.get("/usuarios/{id}")
-def getUsuario(id):
+def get_Usuario(id):
     usuario_id = usuarioEntity(coll.find_one({"_id":ObjectId(id)}))
     return dict(usuario_id)
 
 
 @usuario.put("/usuarios/{id}")
-def putUsuario():
-    return "API usuarios"
+def put_Usuario(id: str, user: UsuarioMongo):
+    return coll.find_one_and_update(
+        {"_id": ObjectId(id)},
+        {{"$set": dict(user)}}
+    )
 
 
 @usuario.delete("/usuarios/{id}")
-def deleteUsuario(id):
+def delete_Usuario(id):
     myquery = {"_id":ObjectId(id)}
     coll.delete_one(myquery)
     return "Usuario Borrado con éxito"
 
 @usuario.get("/usuarios/usersWithReviews/{count}")
-def getUsersWithReviews(count):
+def get_Users_With_X_Reviews(count):
     myquery = {"numReviewsEnBD": {"$gte": int(count)}}
     usuarios = coll.find(myquery)
     return usuariosEntity(usuarios)

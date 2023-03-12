@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class PlusCode(BaseModel):
     compound_code: str
@@ -31,11 +31,11 @@ class RestauranteMongo(BaseModel):
     icon_mask_base_uri: str
     name: str
     photos: list[Photo]
-    photo_url: str
     place_id: str
     plus_code: PlusCode
     price_level: int
     rating: float
     reference: str
     types: list[str]
-    user_ratings_totals: int
+    user_ratings_total: int
+    photo_url: str
