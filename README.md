@@ -42,8 +42,9 @@
 
 
 
-LEVANTAR LA API POR TERMINAL:
-    
+LEVANTAR LA API:
+   Ejecutar app.py o hacerlo por terminal:
+
     uvicorn app:app --host localhost --port 8000 --reload
 
 Para acceder a la documentación de los servicios:
