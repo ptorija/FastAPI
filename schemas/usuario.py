@@ -1,5 +1,9 @@
+from bson import ObjectId
+
+
 def usuarioEntity(item) -> dict:
     return {
+        "oid": str(item["_id"]),
         "name": item["name"],
         "reviewerId": item["reviewerId"],
         "reviewerUrl": item["reviewerUrl"],

@@ -43,5 +43,7 @@ def deleteUsuario(id):
 @usuario.get("/usuarios/usersWithReviews/{count}")
 def getUsersWithReviews(count):
     myquery = {"numReviewsEnBD": {"$gte": int(count)}}
-    x = coll.find(myquery)
-    return usuariosEntity(x)
+    usuarios = coll.find(myquery)
+    return usuariosEntity(usuarios)
+
+

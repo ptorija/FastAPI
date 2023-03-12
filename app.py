@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routes.usuario import usuario
+from routes.restaurante import restaurante
 
 app = FastAPI(
     title="API TFF",
@@ -7,7 +8,11 @@ app = FastAPI(
 )
 
 app.include_router(
-    usuario,
+    restaurante,
 )
+app.include_router(
+    usuario
+)
+
 
 
