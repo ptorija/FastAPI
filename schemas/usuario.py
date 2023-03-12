@@ -9,4 +9,4 @@ def usuarioEntity(item) -> dict:
     }
 
 def usuariosEntity(usuarios) -> list:
-    [usuarioEntity(item) for item in usuarios]
+    return [usuarioEntity(item) for item in usuarios]

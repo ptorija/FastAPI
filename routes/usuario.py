@@ -11,7 +11,8 @@ coll = db["users"]
 
 @usuario.get("/usuarios")
 def getUsuarios():
-    return usuariosEntity(coll.find())
+    result = coll.find({})
+    return usuariosEntity(result)
 
 
 @usuario.post("/usuarios")
@@ -38,3 +39,9 @@ def deleteUsuario(id):
     myquery = {"_id":ObjectId(id)}
     coll.delete_one(myquery)
     return "Usuario Borrado con éxito"
+
+@usuario.get("/usuarios/usersWithReviews/{count}")
+def getUsersWithReviews(count):
+    myquery = {"numReviewsEnBD": {"$gte": int(count)}}
+    x = coll.find(myquery)
+    return usuariosEntity(x)
