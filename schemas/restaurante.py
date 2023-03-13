@@ -24,11 +24,15 @@ def restaurantesEntity(restaurantes) -> dict:
 
 def restauranteAlgoritmoEntity(item, idArtificial) -> dict:
     return {
-        "oid": item["oid"],
+        "oid": item["_id"],
         "id": idArtificial
     }
 
 
-def restaurantesAlgoritmoEntity(restaurantes) -> dict:
+def restaurantesAlgoritmoEntity(restaurantes) -> list:
     i = 1
-    return [restauranteAlgoritmoEntity(item, i) for item in restaurantes]
+    result = list()
+    for restaurante in restaurantes:
+        result.append(restauranteAlgoritmoEntity(restaurante,i))
+        i = i + 1
+    return restaurante
