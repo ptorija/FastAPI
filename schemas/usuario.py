@@ -2,7 +2,7 @@ from bson import ObjectId
 
 def usuarioAlgoritmoEntity(item, idArtifical) -> dict:
     return{
-        "oid": item["_id"],
+        "oid": str(item["_id"]),
         "idArtificial": idArtifical
     }
 
@@ -11,7 +11,7 @@ def usuariosAlgoritmoEntity(usuarios) -> list:
     idArtificial = 1
     for usuario in usuarios:
         result.append(usuarioAlgoritmoEntity(usuario, idArtificial))
-        i = i + 1
+        idArtificial = idArtificial + 1
     return result
 
 def usuarioEntity(item) -> dict:

@@ -1,7 +1,7 @@
 from bson.objectid import ObjectId
 from fastapi import APIRouter
 from config.db import conn
-from schemas.usuario import usuarioEntity, usuariosEntity
+from schemas.usuario import usuarioEntity, usuariosEntity, usuariosAlgoritmoEntity
 from models.usuario import UsuarioMongo
 
 usuario = APIRouter(
@@ -51,4 +51,10 @@ def get_Users_With_X_Reviews(count):
     usuarios = coll.find(myquery)
     return usuariosEntity(usuarios)
 
+
+@usuario.get("/usuarios/")
+def get_Users_With_X_Reviews_Algorythm(count):
+    usuarios = coll.find({"numReviewsEnBD":{"$gte":int(count)}},{"_id":1})
+
+    return usuariosAlgoritmoEntity(usuarios)
 
