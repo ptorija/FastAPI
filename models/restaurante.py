@@ -23,19 +23,19 @@ class Photo(BaseModel):
 
 
 class RestauranteMongo(BaseModel):
-    business_status: str
+    business_status: Optional[str]
     formatted_address: str
     geometry: Geometry
-    icon: str
-    icon_background_color: str
-    icon_mask_base_uri: str
+    icon: Optional[str]
+    icon_background_color: Optional[str]
+    icon_mask_base_uri: Optional[str]
     name: str
-    photos: list[Photo]
+    photos: Optional[list[Photo]]
     place_id: str
-    plus_code: PlusCode
-    price_level: int
+    plus_code: Optional[PlusCode]
+    price_level: Optional[int]
     rating: float
-    reference: str
+    reference: Optional[str]
     types: list[str]
     user_ratings_total: int
     photo_url: str

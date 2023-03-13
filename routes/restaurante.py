@@ -25,7 +25,5 @@ def get_Restaurante(id):
 
 @restaurante.post("/restaurantes")
 def create_Restaurante(restaurant: RestauranteMongo):
-    nuevo_restaurante = dict(restaurant)
-    coll.insert_one(nuevo_restaurante)
-    print(nuevo_restaurante)
+    coll.insert_one(restaurant.dict())
     return "Restaurante creado"
