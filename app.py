@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from routes.usuario import usuario
 from routes.restaurante import restaurante
+from routes.reviews import review
 
 app = FastAPI(
     title="API TFF",
@@ -13,6 +14,9 @@ app.include_router(
 )
 app.include_router(
     usuario
+)
+app.include_router(
+    review
 )
 
 if __name__ == '__main__':

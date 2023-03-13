@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from config.db import conn
 from schemas.restaurante import restauranteEntity, restaurantesEntity
 from models.restaurante import RestauranteMongo
+from models.usuario import UsuarioMongo
 
 
 restaurante = APIRouter(

@@ -17,18 +17,18 @@ def get_Usuarios():
     return usuariosEntity(result)
 
 
+@usuario.get("/usuarios/{id}")
+def get_Usuario(id):
+    usuario_bd = usuarioEntity(coll.find_one({"_id":ObjectId(id)}))
+    return dict(usuario_bd)
+
+
 @usuario.post("/usuarios")
 def create_Usuarios(user: UsuarioMongo):
     nuevo_usuario = dict(user)
     coll.insert_one(nuevo_usuario)
     print(nuevo_usuario)
     return "Usuario creado"
-
-
-@usuario.get("/usuarios/{id}")
-def get_Usuario(id):
-    usuario_id = usuarioEntity(coll.find_one({"_id":ObjectId(id)}))
-    return dict(usuario_id)
 
 
 @usuario.put("/usuarios/{id}")
